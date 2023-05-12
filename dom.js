@@ -6,3 +6,8 @@ let addItems = document.getElementsByClassName("title");
 //console.log(addItems);
 addItems[0].style.fontWeight = 'bold';
 addItems[0].style.color = 'green';
+const items = document.getElementsByClassName("list-group-item");
+items[2].style.backgroundColor = 'green';
+for (let item of items) {
+    item.style.fontWeight = 'bold';
+}
