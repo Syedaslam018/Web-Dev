@@ -11,3 +11,9 @@ items[2].style.backgroundColor = 'green';
 for (let item of items) {
     item.style.fontWeight = 'bold';
 }
+GET ELEMENTS BY TAG NAME:
+
+const li = document.getElementsByTagName('li')
+for (let item of li) {
+    item.style.fontWeight = 'bold';
+}
