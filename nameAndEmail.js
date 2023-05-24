@@ -66,7 +66,12 @@ butt.onclick = function(){
 };
 edit.onclick = function(){
     ul.removeChild(li);
-    localStorage.removeItem('users');
+    axios.delete(`https://crudcrud.com/api/e6c2dbb071404d7fa7bef042f3cf712e/appointmentData/${obj._id}`)
+    .then(response => {
+        console.log("Kindly make the changes in the input feilds and submit the form");
+    }).catch( err => {
+        console.log(err)    
+    })
     ipname.value = obj.fname;
     ipmail.value = obj.fmail;
 };
