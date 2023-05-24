@@ -6,19 +6,23 @@ myForm.addEventListener('submit',onSubmit);
 
 //empty array for storing arrays
 let listUsers = [];
-
-//action event function
-function onSubmit(e){
-    //adding data to localStroage
-    let ipname = document.getElementById('name');
+let ipname = document.getElementById('name');
     let ipmail = document.getElementById('email');
-    e.preventDefault();
+    
     let myObj = {
         fname: ipname.value,
         fmail: ipmail.value
     };
+
+//action event function
+function onSubmit(e){
+    e.preventDefault();
+    //adding data to localStroage
+    
 // localStorage.setItem('users', JSON.stringify(myObj));
 // displayData();
+myObj.fname= ipname.value;
+myObj.fmail= ipmail.value
 axios
 .post("https://crudcrud.com/api/e6c2dbb071404d7fa7bef042f3cf712e/appointmentData", myObj)
 .then(response => {
@@ -28,10 +32,12 @@ axios
 })
 
 
-
-
-
 //adding data to website
+document.myForm.reset();
+}
+
+
+
 function displayData(obj){
     let li = document.createElement('li');
 li.innerHTML = obj.fname + ' ' + obj.fmail;
@@ -59,7 +65,15 @@ edit.onclick = function(){
     ipmail.value = obj.fmail;
 };
 }
-document.myForm.reset();
-}
 
+window.addEventListener("DOMContentLoaded", () => {
+    axios.get("https://crudcrud.com/api/e6c2dbb071404d7fa7bef042f3cf712e/appointmentData")
+    .then(response => {
+        for(var i=0; i<response.data.length; i++){
+            displayData(response.data[i]);
+        }
+    }).catch(err => {
+        console.log(err);
+    })
+})
 
